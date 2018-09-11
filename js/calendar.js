@@ -68,10 +68,8 @@
 		this.toDay = {};
 		this.currDate ={};
 		this.init(ele,opt);
-
 	}
 
-	console.dir(Date)
 	function isDate(date){
 		return isNaN(date)&&!isNaN(Date.parse(date));
 	}
@@ -99,43 +97,43 @@
 		 init:function(ele,opt){
 		 	this.ele = ele;
 			this.options = $.extend({},this.defaults,opt);
-			for(let n =0;n<this.options.enableDay.length;n++){
+			for(var n =0;n<this.options.enableDay.length;n++){
 				this.enablDateList[new Date(this.options.enableDay[n]).format('yyyy-M-d')] = true;
 			}
-			for(let n =0;n<this.options.disableDay.length;n++){
+			for(var n =0;n<this.options.disableDay.length;n++){
 				this.disablDateList[new Date(this.options.disableDay[n]).format('yyyy-M-d')] = true;
 			}
 			if(typeof(this.options.defaultDate) === 'string'){
 				var date = new Date();
 				if(isDate(this.options.defaultDate)){
 					date = new Date(this.options.defaultDate);
-				}
+				};
 				this.selectDate = {
 					year:date.getFullYear(),
 					month:date.getMonth()+1,
 					day:date.getDate()
-				}
+				};
 				this.currDate = {
 					year:date.getFullYear(),
 					month:date.getMonth()+1
-				}
+				};
 			}else{
 				const date = new Date();
 				this.selectDate = {
 					year:new Date().getFullYear(),
 					month:new Date().getMonth()+1,
 					day:new Date().getDate()
-				}
+				};
 				this.currDate = {
 					year:new Date().getFullYear(),
 					month:new Date().getMonth()+1
-				}
+				};
 			}
 			 this.toDay = {
 				 year:new Date().getFullYear(),
 				 month:new Date().getMonth()+1,
 				 day:new Date().getDate()
-			 }
+			 };
 			 if(!isDate(this.options.startDate)){
 				this.options.startDate = this.defaults.startDate;
 			 }
@@ -174,7 +172,7 @@
 			 		year:$(this).data('year'),
 					month:$(this).data('month'),
 					day:$(this).data('day'),
-				}
+				};
 				if(date.year == _self.selectDate.year&&date.month == _self.selectDate.month&&date.day == _self.selectDate.day){
 
 				}else{
@@ -192,13 +190,13 @@
 			 });
 			 this.calenderDom.on('click','.btn-cal-finish',function(){
 				 _self.onHide();
-				 var val = new Date(_self.selectDate.year+'-'+_self.selectDate.month+'-'+_self.selectDate.day).format(_self.options.format);
+				 const val = new Date(_self.selectDate.year+'-'+_self.selectDate.month+'-'+_self.selectDate.day).format(_self.options.format);
 				 _self.options.onSelected(val);
 				 _self.ele.val(val);
 			 });
 			 this.calenderDom.on('click','.calendar-mask',function(){
 				 _self.onHide();
-			 })
+			 });
 			 this.ele.attr('onlyread');
 			 this.ele.val(new Date(_self.selectDate.year+'-'+_self.selectDate.month+'-'+_self.selectDate.day).format(_self.options.format));
 			 this.ele.click(function(){
@@ -206,8 +204,8 @@
 			 })
 		},
 		render:function(){
-			let dayHtml = this.setDayHtml();
-			var calendarHtml =   '<div class="calendar-box" data-id="'+this.calId+'">'+
+			const dayHtml = this.setDayHtml();
+			const calendarHtml =   '<div class="calendar-box" data-id="'+this.calId+'">'+
 			  '<div class="calendar-mask"></div>'+
 			  '<div class="calendar-content">'+
 			'<div class="cal-header">'+
@@ -258,17 +256,17 @@
 			$('body').append(calendarHtml);
 		},
 		updatevView:function(){
-			var dayHtml = this.setDayHtml();
+			const dayHtml = this.setDayHtml();
 			this.calenderDom.find('.day-list').html(dayHtml);
 			this.calenderDom.find('.month-txt').html( this.currDate.month);
 			this.calenderDom.find('.year-txt').html( this.currDate.year);
 		},
 		setDayHtml:function(){
-			var allDay = this.getMonthAllDay();
-			let dayHtml = '';
-			for(let i=0; i<allDay.length;i++){
+			const allDay = this.getMonthAllDay();
+			var dayHtml = '';
+			for(var i=0; i<allDay.length;i++){
 				var isDisable = this.isValid(allDay[i]);
-				let className = isDisable==false?'disabled':'';
+				var className = isDisable==false?'disabled':'';
 				if(allDay[i].type =='currMonth' && comptime(this.toDay.year+'-'+this.toDay.month+'-'+this.toDay.day,allDay[i].date)== 0){
 					className+=' today';
 				}
@@ -281,9 +279,9 @@
 		},
 		getMonthAllDay:function(){
 			var dayList = [];
-			var firstDay = getMonthFirstDay(this.currDate.year,this.currDate.month);
-			var lastDay =  getMonthLastDay(this.currDate.year,this.currDate.month);
-			var day = firstDay.getDay();
+			const firstDay = getMonthFirstDay(this.currDate.year,this.currDate.month);
+			const lastDay =  getMonthLastDay(this.currDate.year,this.currDate.month);
+			const day = firstDay.getDay();
 			var lastMonth={};
 			var nextMonth={};
 			if(this.currDate.month==1){
@@ -301,23 +299,23 @@
 				nextMonth.month = this.currDate.month + 1;
 			}
 
-			var lastMouthDay = getMonthLastDay(lastMonth.year,lastMonth.month);
+			const lastMouthDay = getMonthLastDay(lastMonth.year,lastMonth.month);
 			//前一个月
-			for(var i=day-1; i>=0;i--){
+			for(var i = day-1; i >= 0; i--){
 				dayList.push({date:lastMonth.year+'-'+lastMonth.month+'-'+(new Date(lastMouthDay).getDate()-i),type:'lastMonth',year:lastMonth.year,month:lastMonth.month,day:(new Date(lastMouthDay).getDate()-i)});
 			}
 			//当个月
-			for(var i=1; i <=new Date(lastDay).getDate();i++){
+			for(var i = 1; i <= new Date(lastDay).getDate(); i++){
 				dayList.push({date:this.currDate.year+'-'+this.currDate.month+'-'+i,type:'currMonth',year:this.currDate.year,month:this.currDate.month,day:i});
 
 			}
 			//下个月
-			for(var i = dayList.length,n=1;i<42;i++){
+			for(var i = dayList.length,n = 1; i < 42; i++){
 				dayList.push({date:nextMonth.year+'-'+nextMonth.month+'-'+n,type:'nextMonth',year:nextMonth.year,month:nextMonth.month,day:n});
 				n++;
 			}
 
-			for(let i = 0;i<42;i++){
+			for(var i = 0; i<42; i++){
 				if(i%7==0||i%7==6){
 					dayList[i].isWeek = true;
 				}else{
@@ -429,4 +427,4 @@
 
 	}
 
-})($,window,document)
+})($,window,document);
