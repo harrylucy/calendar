@@ -1,6 +1,6 @@
 ;(function($,window,document){
 	const PLIGINNAME = "calendar";
-	'use static';
+	'use strict';
 	$.fn.calendar = function(options){
 		return  new Calendar(this,options);
 	}
