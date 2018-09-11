@@ -1,0 +1,138 @@
+.calendar-mask{
+	position:fixed;
+	width:100%;
+	height:100%;
+	background-color:rgba(0,0,0,0.2);
+	top:0;
+	left:0;
+    display:none;
+    opacity: 0;
+}
+.calendar-content{
+	position:fixed;
+	width:100%;
+	bottom:-100%;
+	left:0;
+	background-color:#fff;
+    display:none;
+}
+.cal-header{
+	position:relative;
+	width:100%;
+	height:40px;
+	line-height:40px;
+	padding:0 50px;
+	text-align:center;
+	background-color:#f8f8f8;
+	border-bottom:1px solid #eee;
+}
+.cal-header .cal-header-left,.cal-header .cal-header-right{
+	position:absolute;
+	width:50px;
+	height:100%;
+	top:0;
+}
+.cal-header .cal-header-left{
+	left:0;
+}
+.cal-header .cal-header-right{
+	right:0;
+}
+.btn-cal-cancel,.btn-cal-finish{
+	width:100%;
+	height:100%;
+	line-height:40px;
+	text-align:center;
+	border:none;
+	outline:none;
+	background-color:transparent;
+	color:#999;
+	font-size:15px;
+}
+.btn-cal-finish{
+	color:#009dff;
+}
+.cal-date{
+	display:-webkit-box;
+	display:-webkit-flex;
+	display:flex;
+}
+.cal-date>div{
+	position:relative;
+	-webkit-flex:1;
+	flex:1;
+	font-size:20px;
+	height:45px;
+	line-height:45px;
+	text-align:center;
+	padding:0 45px;
+}
+.cal-year .icon-arrow-left,.cal-month .icon-arrow-left{
+	position:absolute;
+	width:15px;
+	height:15px;
+    border-top:1px solid #aaa;
+    border-right:1px solid #aaa;
+    -webkit-transform:rotate(45deg);
+    transform:rotate(45deg);
+
+	top:15px;
+	right:20px;
+}
+.cal-year .icon-arrow-right,.cal-month .icon-arrow-right{
+	position:absolute;
+	width:15px;
+	height:15px;
+    border-top:1px solid #aaa;
+    border-left:1px solid #aaa;
+    -webkit-transform:rotate(-45deg);
+    transform:rotate(-45deg);
+	top:15px;
+	left:20px;
+}
+.week-list{
+	display:-webkit-box;
+	display:-webkit-flex;
+	display:flex;
+}
+.week-list>li{
+	-webkit-flex:1;
+	flex:1;
+	font-size:17px;
+	color:#000;
+	text-align:center;
+	line-height:35px;
+}
+.day-list{
+	display:-webkit-box;
+	display:-webkit-flex;
+	display:flex;
+	flex-wrap: wrap;
+}
+.day-list>li{
+	-webkit-flex:1;
+	flex:1;
+	font-size:15px;
+	color:#333;
+	text-align:center;
+	min-width:14.2%;
+	max-width:14.2%;
+	height:30px;
+	line-height:30px;
+}
+.day-list>li.disabled span{
+	color:#aaa;
+}
+.day-list>li.today span{
+	color:#009dff;
+}
+.day-list>li.select span{
+	display:inline-block;
+	width:25px;
+	height:25px;
+	line-height:25px;
+	border-radius:999px;
+	vertical-align:middle;
+	background-color:#009dff;
+	color:#fff;
+}

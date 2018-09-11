@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>移动端calendar日历插件</title>
+  <link href="css/calendar.css" rel="stylesheet">
+  <script src="js/jquery-2.1.0.min.js"></script>
+   <script src="js/calendar.js"></script>
+  <style>
+	*{
+		box-sizing:border-box;
+		margin:0;
+		padding:0;
+	}
+	body,html{
+		height:100%;
+		width:100%;
+		font-size:14px;
+		color:#333;
+    background-color:#f6f6f6;
+	}
+	ul{
+		list-style:none;
+	}
+  .header{
+    height:45px;
+    line-height:45px;
+    background-color:#009dff;
+    color:#fff;
+    text-align:center;
+    font-size:17px;
+  }
+  .row{
+    margin-top:20px;
+    padding:12px;
+    background-color:#fff;
+  }
+  .row-inner{
+    position:relative;
+    height:30px;
+    line-height:30px;
+    padding-left:70px;
+  }
+  .row-left{
+    position:absolute;
+    width:70px;
+    height:100%;
+    top:0;
+    left:0;
+  }
+  .row-right input{
+    width:100%;
+    height:100%;
+    line-height:100%;
+    border:none;
+    outline:none;
+  }
+  </style>
+ </head>
+ <body>
+ <div class="header">
+   日历
+ </div>
+ <div class="row">
+   <div class="row-inner">
+     <div class="row-left">
+       生日
+     </div>
+     <div class="row-right">
+       <input readonly class="ipt-date">
+     </div>
+   </div>
+ </div>
+
+ <script>
+   var calendar = $('.ipt-date').calendar({
+         defaultDate:"2018-09-05",
+         startDate:"2018-09-05",
+         endDate:"2018-09-20",
+         weekDisabled:false,
+         enableDay:['2018-09-04'],
+         disableDay:['2018-09-06'],
+         onSelected:function(val){
+   	      console.log(val)
+          },
+         onChange:function(val){
+		      console.log(val)
+	      }
+   });
+
+   calendar.setStartDate(null).setEndDate(null).setWeekDisabled(true);
+
+ </script>
+ </body>
+</html>
