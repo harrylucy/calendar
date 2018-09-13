@@ -1,11 +1,11 @@
 ;(function($,window,document){
-	const PLIGINNAME = "calendar";
+	var PLIGINNAME = "calendar";
 	'use strict';
 	$.fn.calendar = function(options){
 		return  new Calendar(this,options);
 	}
 
-	const noop = function(){};
+	var noop = function(){};
 
 	Date.prototype.format = function (format) {
 		var date = this;
@@ -46,7 +46,7 @@
 			}
 		});
 	}
-	const Calendar = function(ele,opt){
+	var Calendar = function(ele,opt){
 		this.defaults = {
 			format:'yyyy-MM-dd',
 			defaultDate:undefined,
@@ -87,8 +87,8 @@
 	}
 
 	function comptime(startTime,endTime){
-		const start = new Date(startTime);
-		const end = new Date(endTime);
+		var start = new Date(startTime);
+		var end = new Date(endTime);
 		if(start > end) return 1;
 		if(start < end) return -1;
 		return 0;
@@ -118,7 +118,7 @@
 					month:date.getMonth()+1
 				};
 			}else{
-				const date = new Date();
+				var date = new Date();
 				this.selectDate = {
 					year:new Date().getFullYear(),
 					month:new Date().getMonth()+1,
@@ -168,7 +168,7 @@
 				 _self.updatevView();
 			 });
 			 this.calenderDom.on('click','.day-list>li:not(.disabled)',function(){
-			 	const date = {
+			 	var date = {
 			 		year:$(this).data('year'),
 					month:$(this).data('month'),
 					day:$(this).data('day'),
@@ -190,7 +190,7 @@
 			 });
 			 this.calenderDom.on('click','.btn-cal-finish',function(){
 				 _self.onHide();
-				 const val = new Date(_self.selectDate.year+'-'+_self.selectDate.month+'-'+_self.selectDate.day).format(_self.options.format);
+				 var val = new Date(_self.selectDate.year+'-'+_self.selectDate.month+'-'+_self.selectDate.day).format(_self.options.format);
 				 _self.options.onSelected(val);
 				 _self.ele.val(val);
 			 });
@@ -204,8 +204,8 @@
 			 })
 		},
 		render:function(){
-			const dayHtml = this.setDayHtml();
-			const calendarHtml =   '<div class="calendar-box" data-id="'+this.calId+'">'+
+			var dayHtml = this.setDayHtml();
+			var calendarHtml =   '<div class="calendar-box" data-id="'+this.calId+'">'+
 			  '<div class="calendar-mask"></div>'+
 			  '<div class="calendar-content">'+
 			'<div class="cal-header">'+
@@ -256,13 +256,13 @@
 			$('body').append(calendarHtml);
 		},
 		updatevView:function(){
-			const dayHtml = this.setDayHtml();
+			var dayHtml = this.setDayHtml();
 			this.calenderDom.find('.day-list').html(dayHtml);
 			this.calenderDom.find('.month-txt').html( this.currDate.month);
 			this.calenderDom.find('.year-txt').html( this.currDate.year);
 		},
 		setDayHtml:function(){
-			const allDay = this.getMonthAllDay();
+			var allDay = this.getMonthAllDay();
 			var dayHtml = '';
 			for(var i=0; i<allDay.length;i++){
 				var isDisable = this.isValid(allDay[i]);
@@ -279,9 +279,9 @@
 		},
 		getMonthAllDay:function(){
 			var dayList = [];
-			const firstDay = getMonthFirstDay(this.currDate.year,this.currDate.month);
-			const lastDay =  getMonthLastDay(this.currDate.year,this.currDate.month);
-			const day = firstDay.getDay();
+			var firstDay = getMonthFirstDay(this.currDate.year,this.currDate.month);
+			var lastDay =  getMonthLastDay(this.currDate.year,this.currDate.month);
+			var day = firstDay.getDay();
 			var lastMonth={};
 			var nextMonth={};
 			if(this.currDate.month==1){
@@ -299,7 +299,7 @@
 				nextMonth.month = this.currDate.month + 1;
 			}
 
-			const lastMouthDay = getMonthLastDay(lastMonth.year,lastMonth.month);
+			var lastMouthDay = getMonthLastDay(lastMonth.year,lastMonth.month);
 			//前一个月
 			for(var i = day-1; i >= 0; i--){
 				dayList.push({date:lastMonth.year+'-'+lastMonth.month+'-'+(new Date(lastMouthDay).getDate()-i),type:'lastMonth',year:lastMonth.year,month:lastMonth.month,day:(new Date(lastMouthDay).getDate()-i)});
@@ -399,7 +399,7 @@
 					month:date.getMonth()+1
 				}
 			}else{
-				const date = new Date();
+				var date = new Date();
 				this.selectDate = {
 					year:new Date().getFullYear(),
 					month:new Date().getMonth()+1,
